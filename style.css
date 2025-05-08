@@ -23,7 +23,7 @@
 
 body {
   background-color: #ffffff;
-  transition: overflow 0.3s ease-in-out; /* For smooth scroll lock */
+  transition: overflow 0.3s ease-in-out;
 }
 
 #main_layout {
@@ -136,7 +136,7 @@ header > .greeting > p {
   border-radius: 3rem;
   background-color: var(--lightGreen);
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out,
-    outline-color 0.2s ease-out; /* Transisi untuk smooth click */
+    outline-color 0.2s ease-out;
 }
 
 .Donasi-button > a {
@@ -148,19 +148,17 @@ header > .greeting > p {
 }
 
 .Donasi-button:hover {
-  box-shadow: 0px 4px 10px rgba(143, 195, 50, 0.5); /* Shadow lebih halus */
-  transform: translateY(-2px); /* Efek hover sedikit ke atas */
+  box-shadow: 0px 4px 10px rgba(143, 195, 50, 0.5);
+  transform: translateY(-2px);
 }
 
 .Donasi-button:active {
-  /* Efek ketika diklik */
   transform: scale(0.95) translateY(0);
   box-shadow: 0px 2px 5px rgba(143, 195, 50, 0.4);
-  animation: click_anim 0.2s ease-out; /* Animasi tambahan jika masih diinginkan */
+  animation: click_anim 0.2s ease-out;
 }
 
 @keyframes click_anim {
-  /* Animasi ini bisa disederhanakan atau dihapus jika transisi :active cukup */
   0% {
     transform: scale(0.95);
   }
@@ -187,7 +185,7 @@ main > section {
   padding-bottom: 3.5rem;
 }
 main > section:last-of-type {
-  padding-bottom: 3.5rem; /* Pastikan section terakhir juga punya padding bawah sebelum footer */
+  padding-bottom: 3.5rem;
 }
 
 /* SECTION 1 (Jadwal Shalat) */
@@ -511,7 +509,7 @@ main > section:last-of-type {
   display: none;
 }
 
-/* SECTION BARU: COMMUNITY & PARTNERS */
+/* SECTION: COMMUNITY & PARTNERS */
 .community-partners-section {
   padding-left: 3rem;
   padding-right: 3rem;
@@ -586,55 +584,55 @@ main > section:last-of-type {
   fill: #cccccc;
 }
 
-/* FOOTER STYLES - REVISED */
+/* FOOTER STYLES */
 footer {
   background-color: var(--darkGreen);
-  color: #e0e0e0; /* Warna teks sedikit lebih terang dari putih murni untuk kontras yang lebih baik */
-  padding: 3rem 0 2rem; /* Padding atas dan bawah untuk footer */
+  color: #e0e0e0;
+  padding: 3rem 0 2rem;
   font-size: 0.9rem;
 }
 
 .footer-content-wrapper {
-  max-width: 1200px; /* Lebar maksimum konten footer */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem; /* Padding kiri kanan untuk wrapper */
+  padding: 0 2rem;
 }
 
 .footer-main-content {
   display: flex;
-  flex-wrap: nowrap; /* Defaultnya tidak wrap, biarkan flexbox menangani pembagian ruang */
-  gap: 2.5rem; /* Jarak antar item utama: logo dan info-columns */
-  align-items: flex-start; /* Sejajarkan item ke atas */
+  flex-wrap: nowrap;
+  gap: 2.5rem;
+  align-items: flex-start;
   padding-bottom: 2.5rem;
 }
 
 .footer-logo-section {
-  flex-shrink: 0; /* Agar logo tidak menyusut */
+  flex-shrink: 0;
 }
 
 .footer-logo {
-  width: 150px; /* Sesuaikan ukuran logo */
+  width: 150px;
   height: auto;
-  display: block; /* Hapus spasi ekstra di bawah gambar */
+  display: block;
 }
 
 .footer-info-columns {
   display: flex;
   flex-grow: 1;
-  gap: 2rem; /* Jarak antar kolom alamat dan donasi */
-  flex-wrap: wrap; /* Biarkan kolom wrap jika tidak cukup ruang */
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .footer-section {
-  flex: 1; /* Bagi ruang secara merata antar kolom info */
-  min-width: 220px; /* Lebar minimum sebelum wrap */
+  flex: 1;
+  min-width: 220px;
 }
 .footer-section.footer-donation {
-  flex: 1.5; /* Kolom donasi mungkin butuh lebih banyak ruang */
+  flex: 1.5;
 }
 
 .footer-section h3 {
-  font-size: 1rem; /* Ukuran heading di footer */
+  font-size: 1rem;
   margin-bottom: 1rem;
   color: #ffffff;
   font-family: "Merriweather", serif;
@@ -650,14 +648,14 @@ footer {
 
 .footer-donation .donation-accounts-container {
   display: flex;
-  flex-wrap: wrap; /* Izinkan rekening wrap jika ada banyak */
-  gap: 1.5rem; /* Jarak antar blok rekening */
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .footer-donation .donation-account {
-  margin-bottom: 0; /* Hapus margin bawah individual, diatur oleh gap container */
-  flex: 1; /* Biarkan setiap rekening mengambil ruang yang sama */
-  min-width: 200px; /* Lebar minimum untuk setiap rekening sebelum wrap */
+  margin-bottom: 0;
+  flex: 1;
+  min-width: 200px;
 }
 
 .footer-donation .account-number {
@@ -668,24 +666,24 @@ footer {
 .footer-divider {
   border: none;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.15); /* Warna garis pemisah */
-  margin: 0 0 2rem 0; /* Jarak di atas dan bawah garis */
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 0 0 2rem 0;
 }
 
 .footer-bottom-bar {
   display: flex;
-  justify-content: space-between; /* Nav kiri, sosial kanan */
-  align-items: flex-start; /* Sejajarkan ke atas jika konten berbeda tinggi */
-  flex-wrap: wrap; /* Izinkan wrap untuk layar kecil */
-  gap: 1.5rem; /* Jarak jika wrap */
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   font-size: 0.85rem;
 }
 
 .footer-bottom-left {
   display: flex;
-  flex-direction: column; /* Nav di atas copyright */
-  gap: 0.75rem; /* Jarak antara nav dan copyright */
-  align-items: flex-start; /* Mulai teks dari kiri */
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
 }
 
 .footer-nav ul {
@@ -693,7 +691,7 @@ footer {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem; /* Jarak vertikal dan horizontal antar link */
+  gap: 0.5rem 1rem;
 }
 
 .footer-nav ul li a {
@@ -708,29 +706,28 @@ footer {
 }
 
 .copyright {
-  color: rgba(255, 255, 255, 0.6); /* Warna copyright lebih lembut */
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.8rem;
 }
 
 .social-media {
   display: flex;
-  gap: 1rem; /* Jarak antar ikon sosial media */
+  gap: 1rem;
   list-style: none;
   padding: 0;
-  align-items: center; /* Sejajarkan ikon secara vertikal */
+  align-items: center;
 }
 
 .social-media li a img {
-  width: 22px; /* Ukuran ikon sosial media */
+  width: 22px;
   height: 22px;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .social-media li a:hover img {
   opacity: 0.8;
-  transform: scale(1.1); /* Efek hover pada ikon */
+  transform: scale(1.1);
 }
 
-/* HAMBURGER MENU STYLES */
 .mobile-nav-toggle {
   display: none;
   background: transparent;
@@ -970,53 +967,52 @@ footer {
 
   /* Footer Responsive Mobile */
   .footer-content-wrapper {
-    padding: 0 1.5rem; /* Kurangi padding di mobile */
+    padding: 0 1.5rem;
   }
   .footer-main-content {
-    flex-direction: column; /* Susun logo, alamat, donasi secara vertikal */
-    align-items: center; /* Pusatkan item */
-    text-align: center; /* Teks juga terpusat */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding-bottom: 2rem;
   }
   .footer-logo-section {
-    margin-bottom: 1.5rem; /* Jarak bawah untuk logo */
+    margin-bottom: 1.5rem;
   }
   .footer-logo {
     max-width: 120px;
   }
   .footer-info-columns {
-    flex-direction: column; /* Alamat dan donasi juga vertikal */
+    flex-direction: column;
     align-items: center;
-    width: 100%; /* Ambil lebar penuh */
+    width: 100%;
   }
   .footer-section {
     min-width: 100%;
-    text-align: center; /* Pastikan teks di dalam section terpusat */
+    text-align: center;
   }
   .footer-donation .donation-accounts-container {
-    justify-content: center; /* Pusatkan blok rekening jika wrap */
+    justify-content: center;
   }
 
   .footer-bottom-bar {
-    flex-direction: column; /* Susun bawah footer secara vertikal */
-    align-items: center; /* Pusatkan */
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: 1.5rem;
   }
   .footer-bottom-left {
-    align-items: center; /* Pusatkan nav dan copyright */
-    order: 2; /* Tampilkan setelah social media jika diinginkan, atau biarkan default */
+    align-items: center;
+    order: 2;
   }
   .footer-nav ul {
-    justify-content: center; /* Pusatkan link nav */
+    justify-content: center;
     gap: 0.5rem 0.8rem;
   }
   .social-media {
-    order: 1; /* Tampilkan social media di atas nav & copyright */
-    margin-bottom: 1rem; /* Beri jarak jika social media di atas */
+    order: 1;
+    margin-bottom: 1rem;
   }
 
-  /* Community & Partners Responsive Small Mobile */
   .partner-logos,
   .partner-placeholders {
     grid-template-columns: repeat(2, 1fr);
@@ -1028,7 +1024,6 @@ footer {
 }
 
 @media (max-width: 550px) {
-  /* Mobile Sangat Kecil */
   .section-2 .infaq-cards article {
     width: 100%;
   }
@@ -1082,10 +1077,10 @@ footer {
   .partner-logo-item,
   .partner-placeholder-item {
     padding: 0.75rem;
-    min-height: 80px; /* Sesuaikan tinggi minimal di layar sangat kecil */
+    min-height: 80px;
   }
   .partner-logo-item img {
-    max-height: 50px; /* Logo lebih kecil */
+    max-height: 50px;
   }
   .partner-placeholder-item svg.gallery-icon {
     max-width: 30px;
