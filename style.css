@@ -29,9 +29,9 @@ body {
 #main_layout {
   color: var(--gray);
   display: grid;
-  gap: 0; /* Adjusted, sections will handle their own spacing */
+  gap: 0;
   max-width: 100vw;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 h1,
@@ -51,13 +51,14 @@ h2 {
 }
 
 h3 {
-  font-size: 0.76rem; /* Consider increasing for better readability if needed */
-  line-height: 1.2;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--darkGreen);
 }
 
 #logo {
   scale: 0.9;
-  z-index: 10000; /* Ensure logo is above mobile nav background */
+  z-index: 10000;
 }
 
 header {
@@ -71,7 +72,7 @@ header {
   row-gap: 3.5rem;
   padding: 1rem 4.5% 4rem;
   position: relative;
-  min-height: 500px; /* Use min-height to ensure bg image visibility */
+  min-height: 500px;
 }
 
 header > .top-header {
@@ -83,7 +84,7 @@ header > .top-header {
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  position: relative; /* For z-index context if needed */
+  position: relative;
 }
 
 header > .top-header > nav#primary-navigation > ul {
@@ -100,15 +101,19 @@ header > .top-header > nav#primary-navigation > ul > li > a {
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-header > .top-header > nav#primary-navigation > ul > li > a:is(.active, :hover) {
+header
+  > .top-header
+  > nav#primary-navigation
+  > ul
+  > li
+  > a:is(.active, :hover) {
   color: var(--lightGreen);
   border-bottom: solid 2px var(--lightGreen);
 }
 
 .mobile-donasi-button-item {
-    display: none; /* Hidden on desktop */
+  display: none;
 }
-
 
 header > .greeting {
   width: min(30rem, 100%);
@@ -130,6 +135,8 @@ header > .greeting > p {
   width: fit-content;
   border-radius: 3rem;
   background-color: var(--lightGreen);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out,
+    outline-color 0.2s ease-out; /* Transisi untuk smooth click */
 }
 
 .Donasi-button > a {
@@ -141,47 +148,54 @@ header > .greeting > p {
 }
 
 .Donasi-button:hover {
-  outline: solid 2px var(--mediumGreen);
-  outline-offset: -3px;
-  border-radius: 3rem;
-  box-shadow: 2px 2px 5px var(--lightGreen);
-  animation: click_anim 0.25s;
+  box-shadow: 0px 4px 10px rgba(143, 195, 50, 0.5); /* Shadow lebih halus */
+  transform: translateY(-2px); /* Efek hover sedikit ke atas */
+}
+
+.Donasi-button:active {
+  /* Efek ketika diklik */
+  transform: scale(0.95) translateY(0);
+  box-shadow: 0px 2px 5px rgba(143, 195, 50, 0.4);
+  animation: click_anim 0.2s ease-out; /* Animasi tambahan jika masih diinginkan */
 }
 
 @keyframes click_anim {
-  from {
-    transform: scale(0.9);
+  /* Animasi ini bisa disederhanakan atau dihapus jika transisi :active cukup */
+  0% {
+    transform: scale(0.95);
   }
-  to {
-    transform: scale(1);
+  50% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(0.95);
   }
 }
 
 .bg-masjid {
   position: absolute;
-  width: 100%; /* Changed from 100vw to 100% for better containment */
-  height: 100%; /* Changed from inherit to 100% */
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   inset: 0;
   z-index: -1;
 }
 
 /* SECTION STYLES */
-main > section { /* Add default vertical spacing for sections */
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
+main > section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
 }
-main > section:last-of-type { /* No bottom padding for the last section before footer */
-    padding-bottom: 0;
+main > section:last-of-type {
+  padding-bottom: 3.5rem; /* Pastikan section terakhir juga punya padding bawah sebelum footer */
 }
 
-
-/* SECTION 1 */
+/* SECTION 1 (Jadwal Shalat) */
 .section-1 {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  padding-left: 4.5%; /* Keep horizontal padding consistent */
+  padding-left: 4.5%;
   padding-right: 4.5%;
 }
 
@@ -189,7 +203,9 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   align-self: center;
 }
 
-:is(.section-1, .section-3, .section-4, .section-5) > div:first-child h2 {
+:is(.section-1, .section-3, .section-4, .section-5, .community-partners-section)
+  > div:first-child
+  h2 {
   color: var(--darkGreen);
 }
 
@@ -206,28 +222,24 @@ main > section:last-of-type { /* No bottom padding for the last section before f
 }
 
 .section-1 .time-cards {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: stretch; /* Make cards same height if content varies */
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .section-1 .time-cards article {
   background-color: var(--paleGreen);
   border-radius: 8px;
-  padding: 2rem 1.25rem;
+  padding: 1.25rem 1rem;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  width: 120px; /* Give a base width */
   text-align: center;
-  /* aspect-ratio: 1/2; Removed to allow content to define height better */
 }
 
-.section-1 .time-cards article div:nth-child(2) { /* For "Imsyak", "Shubuh" etc. */
+.section-1 .time-cards article div:nth-child(2) {
   font-size: 0.8em;
 }
 
@@ -235,7 +247,7 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   font-weight: 900;
 }
 
-/* SECTION 2 */
+/* SECTION 2 (Laporan Keuangan) */
 .section-2 {
   color: white;
   background-color: var(--darkGreen);
@@ -244,14 +256,14 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  padding: 4rem 2rem; /* This padding will be overridden by main > section for top/bottom */
+  padding: 4rem 2rem;
 }
 
 .section-2 .laporan-keuangan {
   display: flex;
   flex-flow: column wrap;
   gap: 1.5rem;
-  text-align: center; /* Center text for better mobile appearance */
+  text-align: center;
 }
 
 .section-2 .laporan-keuangan h2 {
@@ -266,14 +278,14 @@ main > section:last-of-type { /* No bottom padding for the last section before f
 .section-2 .laporan-keuangan p span.price,
 .section-2 .infaq-cards article div span.price {
   font-weight: 900;
-  font-size: 1.5rem; /* Make price stand out */
+  font-size: 1.5rem;
 }
 
 .section-2 .infaq-cards {
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
-  align-items: stretch; /* Equal height cards */
+  align-items: stretch;
   justify-content: center;
 }
 
@@ -281,8 +293,8 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   color: var(--gray);
   background-color: white;
   border-radius: 8px;
-  padding: 1.5rem 1.25rem; /* Increased padding */
-  width: 15rem; /* Increased width */
+  padding: 1.5rem 1.25rem;
+  width: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -295,13 +307,13 @@ main > section:last-of-type { /* No bottom padding for the last section before f
 .section-2 > .infaq-cards > article > div:nth-child(2) > a {
   color: var(--mediumGreen);
   text-decoration: none;
-  font-size: 0.8em; /* Increased size */
+  font-size: 0.8em;
   font-weight: bold;
   display: inline-block;
   margin-top: 1rem;
 }
 
-/* SECTION 3 */
+/* SECTION 3 (Jadwal Kegiatan) */
 .section-3 {
   background-color: var(--paleGreen);
   display: flex;
@@ -320,23 +332,24 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem 1rem; /* row and column gap */
+  gap: 0.5rem 1rem;
   list-style: none;
 }
 
 .section-3 .jadwal-kegiatan-nav nav ul li a {
   color: var(--gray);
   text-decoration: none;
-  font-size: 0.85rem; /* Slightly increased */
+  font-size: 0.85rem;
   font-weight: 900;
-  padding: 0.5rem 0.75rem; /* Added padding for better touch */
+  padding: 0.5rem 0.75rem;
   border-radius: 4px;
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .section-3 .jadwal-kegiatan-nav nav ul li a:is(.active, :hover) {
   color: var(--mediumGreen);
-  background-color: rgba(143, 195, 50, 0.1); /* Light green tint */
+  background-color: rgba(143, 195, 50, 0.1);
   border-bottom: solid 1px var(--mediumGreen);
 }
 
@@ -345,36 +358,35 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   margin-left: auto;
   margin-right: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Increased minmax */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 1.5rem;
-  place-items: stretch; /* Make cards of same height in a row */
+  place-items: stretch;
 }
 
 .section-3 > .ustad-cards > article {
   color: var(--gray);
   background-color: #ffffff;
-  max-width: 300px; /* Max width per card */
-  /* aspect-ratio: 72/59; Removed for flexible height */
+  max-width: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Better content distribution */
-  row-gap: 0.5rem; /* Increased gap */
+  justify-content: space-between;
+  row-gap: 0.5rem;
   border-radius: 8px;
-  padding: 1.5rem 1.25rem; /* Increased padding */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Subtle shadow */
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .section-3 > .ustad-cards > article > .ustadz-name {
   color: var(--darkGreen);
   text-align: center;
   text-wrap: pretty;
-  font-size: 1rem; /* Increased size */
+  font-size: 1rem;
   font-family: "Merriweather", serif;
-  min-height: 3em; /* Ensure space for longer names */
+  min-height: 3em;
 }
 
 .section-3 .ustad-cards article > *:not(.ustadz-name) {
-  font-size: 0.9em; /* Increased size */
+  font-size: 0.9em;
 }
 
 .section-3 .ustad-cards article > *:not(hr) {
@@ -382,32 +394,33 @@ main > section:last-of-type { /* No bottom padding for the last section before f
 }
 
 .section-3 > .ustad-cards > article > hr {
-  height: 1px; /* Thicker hr */
-  background-color: #dddddd; /* Lighter hr */
+  height: 1px;
+  background-color: #dddddd;
   border: none;
   margin: 0.5rem 0;
 }
 
-.section-3 .ustad-cards article div:nth-last-child(2) { /* "Tema :" */
+.section-3 .ustad-cards article div:nth-last-child(2) {
   font-weight: normal;
 }
-.section-3 .ustad-cards article div:last-child { /* Actual theme */
+.section-3 .ustad-cards article div:last-child {
   font-weight: bold;
   color: var(--mediumGreen);
 }
 
-
-/* SECTION 4 & 5 */
+/* SECTION 4 (Lentera Istiqomah) & 5 (Artikel) */
 .section-4,
 .section-5 {
-  background-color: var(--paleGreen); /* Default for section-5, section-4 has its own */
   padding-left: 3rem;
   padding-right: 3rem;
 }
-.section-4 { /* Keep section-4 white if intended, or remove if paleGreen is okay */
+.section-4 {
   background-color: #ffffff;
 }
 
+.section-5 {
+  background-color: #ffffff;
+}
 
 .section-4 .judul,
 .section-5 .judul {
@@ -415,7 +428,8 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 2rem; /* Add space below title block */
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .section-4 .judul .sub-judul,
@@ -430,6 +444,12 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   scale: 0.75;
 }
 
+.section-4 .judul .sub-judul h2 .channel-youtube {
+  font-weight: normal;
+  font-size: 0.9em;
+  color: var(--gray);
+}
+
 .section-4 .more-link a,
 .section-5 .more-link a {
   color: var(--mediumGreen);
@@ -441,8 +461,8 @@ main > section:last-of-type { /* No bottom padding for the last section before f
 .section-4 .content,
 .section-5 .content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax */
-  gap: 2rem; /* Increased gap */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 .section-4 article,
@@ -453,119 +473,261 @@ main > section:last-of-type { /* No bottom padding for the last section before f
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Subtle shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.section-4 article .thumbnail img,
-.section-5 article .thumbnail img {
+.thumbnail-placeholder {
   width: 100%;
+  aspect-ratio: 16/9;
+  background-color: #f0f0f0;
   border-radius: 8px;
-  aspect-ratio: 16/9; /* Maintain aspect ratio for thumbnails */
-  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail-placeholder svg {
+  width: 20%;
+  max-width: 60px;
+  height: auto;
+  fill: #cccccc;
 }
 
 .section-4 article .title,
 .section-5 article .title {
-  font-size: 1.1rem; /* Slightly larger title */
-  color: var(--darkGreen);
-  font-family: "Merriweather", serif;
-  line-height: 1.3;
-  min-height: 3.9em; /* Allow for 3 lines of text roughly */
+  min-height: auto;
 }
 
 .section-4 article .description,
 .section-5 article .description {
-  font-size: 0.9em; /* Slightly larger description */
+  font-size: 0.85em;
   color: var(--gray);
   line-height: 1.5;
-  flex-grow: 1; /* Allow description to take available space */
+  flex-grow: 1;
 }
 
 .section-4 article .btn,
 .section-5 article .btn {
-  align-self: flex-start;
-  background-color: var(--lightGreen);
+  display: none;
+}
+
+/* SECTION BARU: COMMUNITY & PARTNERS */
+.community-partners-section {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.community-partners-section .judul {
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.community-partners-section .judul h2 {
   color: var(--darkGreen);
-  text-decoration: none;
-  padding: 0.75rem 1.5rem; /* Increased padding */
-  border-radius: 3rem;
-  font-weight: 700;
-  margin-top: auto; /* Push button to bottom if card heights vary */
+  font-family: "Merriweather", serif;
 }
 
-.section-4 article .btn:hover,
-.section-5 article .btn:hover {
-  outline: solid 2px var(--mediumGreen);
-  outline-offset: -3px;
-  border-radius: 3rem;
-  box-shadow: 2px 2px 5px var(--lightGreen);
-  animation: click_anim 0.25s;
+.community-partners-section .sub-judul-community {
+  font-family: "Inter", sans-serif;
+  color: var(--gray);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
-/* FOOTER */
+.partner-logos,
+.partner-placeholders {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partner-logo-item,
+.partner-placeholder-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #ffffff;
+  min-height: 100px;
+}
+
+.partner-logo-item img {
+  max-width: 100%;
+  max-height: 70px;
+  object-fit: contain;
+}
+
+.partner-logo-item.highlighted {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.partner-placeholder-item {
+  background-color: #f0f0f0;
+  aspect-ratio: 3/2;
+}
+
+.partner-placeholder-item svg.gallery-icon {
+  width: 30%;
+  max-width: 40px;
+  height: auto;
+  fill: #cccccc;
+}
+
+/* FOOTER STYLES - REVISED */
 footer {
   background-color: var(--darkGreen);
-  color: white;
-  padding: 3rem 2rem;
+  color: #e0e0e0; /* Warna teks sedikit lebih terang dari putih murni untuk kontras yang lebih baik */
+  padding: 3rem 0 2rem; /* Padding atas dan bawah untuk footer */
+  font-size: 0.9rem;
 }
 
-footer .container {
+.footer-content-wrapper {
+  max-width: 1200px; /* Lebar maksimum konten footer */
+  margin: 0 auto;
+  padding: 0 2rem; /* Padding kiri kanan untuk wrapper */
+}
+
+.footer-main-content {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: space-between; /* Better distribution for 3 columns */
-  max-width: 1200px; /* Max width for footer content */
-  margin: 0 auto; /* Center footer content */
+  flex-wrap: nowrap; /* Defaultnya tidak wrap, biarkan flexbox menangani pembagian ruang */
+  gap: 2.5rem; /* Jarak antar item utama: logo dan info-columns */
+  align-items: flex-start; /* Sejajarkan item ke atas */
+  padding-bottom: 2.5rem;
 }
 
-footer .footer-section {
-  flex: 1;
-  min-width: 200px;
-  padding: 0 1rem; /* Add some padding to footer sections */
+.footer-logo-section {
+  flex-shrink: 0; /* Agar logo tidak menyusut */
 }
 
-footer .footer-section h3 {
-  font-size: 1.2rem;
+.footer-logo {
+  width: 150px; /* Sesuaikan ukuran logo */
+  height: auto;
+  display: block; /* Hapus spasi ekstra di bawah gambar */
+}
+
+.footer-info-columns {
+  display: flex;
+  flex-grow: 1;
+  gap: 2rem; /* Jarak antar kolom alamat dan donasi */
+  flex-wrap: wrap; /* Biarkan kolom wrap jika tidak cukup ruang */
+}
+
+.footer-section {
+  flex: 1; /* Bagi ruang secara merata antar kolom info */
+  min-width: 220px; /* Lebar minimum sebelum wrap */
+}
+.footer-section.footer-donation {
+  flex: 1.5; /* Kolom donasi mungkin butuh lebih banyak ruang */
+}
+
+.footer-section h3 {
+  font-size: 1rem; /* Ukuran heading di footer */
   margin-bottom: 1rem;
-  color: var(--lightGreen); /* Heading color for footer */
+  color: #ffffff;
+  font-family: "Merriweather", serif;
+  font-weight: bold;
 }
 
-footer .footer-section ul {
+.footer-address p,
+.footer-donation p {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+  font-size: 0.85rem;
+}
+
+.footer-donation .donation-accounts-container {
+  display: flex;
+  flex-wrap: wrap; /* Izinkan rekening wrap jika ada banyak */
+  gap: 1.5rem; /* Jarak antar blok rekening */
+}
+
+.footer-donation .donation-account {
+  margin-bottom: 0; /* Hapus margin bawah individual, diatur oleh gap container */
+  flex: 1; /* Biarkan setiap rekening mengambil ruang yang sama */
+  min-width: 200px; /* Lebar minimum untuk setiap rekening sebelum wrap */
+}
+
+.footer-donation .account-number {
+  font-weight: bold;
+  color: var(--lightGreen);
+}
+
+.footer-divider {
+  border: none;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15); /* Warna garis pemisah */
+  margin: 0 0 2rem 0; /* Jarak di atas dan bawah garis */
+}
+
+.footer-bottom-bar {
+  display: flex;
+  justify-content: space-between; /* Nav kiri, sosial kanan */
+  align-items: flex-start; /* Sejajarkan ke atas jika konten berbeda tinggi */
+  flex-wrap: wrap; /* Izinkan wrap untuk layar kecil */
+  gap: 1.5rem; /* Jarak jika wrap */
+  font-size: 0.85rem;
+}
+
+.footer-bottom-left {
+  display: flex;
+  flex-direction: column; /* Nav di atas copyright */
+  gap: 0.75rem; /* Jarak antara nav dan copyright */
+  align-items: flex-start; /* Mulai teks dari kiri */
+}
+
+.footer-nav ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem; /* Jarak vertikal dan horizontal antar link */
 }
 
-footer .footer-section ul li {
-  margin-bottom: 0.75rem; /* Increased spacing */
-}
-
-footer .footer-section ul li a {
-  color: white;
+.footer-nav ul li a {
+  color: #e0e0e0;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-footer .footer-section ul li a:hover {
+.footer-nav ul li a:hover {
   color: var(--lightGreen);
   text-decoration: underline;
 }
 
-footer .footer-section .social-media {
+.copyright {
+  color: rgba(255, 255, 255, 0.6); /* Warna copyright lebih lembut */
+  font-size: 0.8rem;
+}
+
+.social-media {
   display: flex;
-  gap: 1rem;
-}
-
-footer .footer-section .social-media li {
+  gap: 1rem; /* Jarak antar ikon sosial media */
   list-style: none;
+  padding: 0;
+  align-items: center; /* Sejajarkan ikon secara vertikal */
 }
 
-footer .footer-section .social-media li a img {
-  width: 28px; /* Slightly larger icons */
-  height: 28px;
-  transition: opacity 0.2s ease;
+.social-media li a img {
+  width: 22px; /* Ukuran ikon sosial media */
+  height: 22px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
-footer .footer-section .social-media li a:hover img {
+.social-media li a:hover img {
   opacity: 0.8;
+  transform: scale(1.1); /* Efek hover pada ikon */
 }
 
 /* HAMBURGER MENU STYLES */
@@ -575,7 +737,7 @@ footer .footer-section .social-media li a:hover img {
   border: 0;
   padding: 0.5em;
   cursor: pointer;
-  z-index: 10001; /* Above nav menu */
+  z-index: 10001;
 }
 
 .sr-only {
@@ -601,7 +763,7 @@ footer .footer-section .social-media li a:hover img {
 
 .hamburger-icon::before,
 .hamburger-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   width: 100%;
@@ -630,17 +792,31 @@ footer .footer-section .social-media li a:hover img {
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+  /* Tablet */
+  .footer-main-content {
+    gap: 2rem;
+  }
+  .footer-info-columns {
+    gap: 1.5rem;
+  }
+  .partner-logos,
+  .partner-placeholders {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
-/* === RESPONSIVE MOBILE === */
 @media (max-width: 768px) {
+  /* Mobile Besar */
   :root {
-    font-size: 15px; /* Adjust base font size for tablet/mobile */
+    font-size: 15px;
   }
 
   header {
     padding: 1.5rem 1.5rem 3rem;
-    min-height: auto; /* Header height will be content-driven */
-    row-gap: 2rem; /* Reduce gap */
+    min-height: auto;
+    row-gap: 2rem;
   }
 
   .top-header {
@@ -658,18 +834,18 @@ footer .footer-section .social-media li a:hover img {
   }
 
   header > .top-header > nav#primary-navigation {
-    display: block; /* Keep it block, visibility controlled by transform and class */
-    position: fixed; /* Fixed position for full screen overlay */
+    display: block;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     background: var(--darkGreen);
-    padding: 6rem 2rem 2rem; /* Padding for content inside */
-    z-index: 10000; /* Below toggle button but above other content */
+    padding: 6rem 2rem 2rem;
+    z-index: 10000;
     transform: translateX(-100%);
-    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother transition */
-    overflow-y: auto; /* Allow scrolling if content exceeds height */
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow-y: auto;
   }
 
   header > .top-header > nav#primary-navigation.nav-active {
@@ -679,14 +855,14 @@ footer .footer-section .social-media li a:hover img {
   header > .top-header > nav#primary-navigation ul {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem; /* Space between nav items */
+    gap: 1.5rem;
     width: 100%;
   }
 
   header > .top-header > nav#primary-navigation ul li a {
-    font-size: 1.5rem; /* Larger font for mobile nav items */
+    font-size: 1.5rem;
     padding: 0.75rem 1rem;
-    border-bottom: none; /* Remove border for mobile nav items */
+    border-bottom: none;
   }
   header > .top-header > nav#primary-navigation ul li a:is(.active, :hover) {
     color: var(--lightGreen);
@@ -694,27 +870,35 @@ footer .footer-section .social-media li a:hover img {
   }
 
   .mobile-donasi-button-item {
-    display: block; /* Show Donasi button in mobile nav */
+    display: block;
     margin-top: 1rem;
   }
   .Donasi-button-mobile-nav {
     background-color: var(--lightGreen);
-    color: var(--darkGreen) !important; /* Ensure text color */
+    color: var(--darkGreen) !important;
     padding: 0.75rem 2rem !important;
     border-radius: 3rem;
     font-weight: 700;
     font-size: 1.2rem !important;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+  .Donasi-button-mobile-nav:hover {
+    box-shadow: 0px 4px 10px rgba(143, 195, 50, 0.5);
+    transform: translateY(-2px);
+  }
+  .Donasi-button-mobile-nav:active {
+    transform: scale(0.95) translateY(0);
+    box-shadow: 0px 2px 5px rgba(143, 195, 50, 0.4);
   }
 
-
-  .header-donasi-button { /* The original Donasi button in top-header */
+  .header-donasi-button {
     display: none;
   }
 
   header > .greeting {
     text-align: center;
-    margin-top: 1rem; /* Adjust spacing */
-    width: 100%; /* Full width */
+    margin-top: 1rem;
+    width: 100%;
   }
   header > .greeting > h1 {
     font-size: 1.8rem;
@@ -723,7 +907,7 @@ footer .footer-section .social-media li a:hover img {
     font-size: 0.95rem;
   }
   header > .greeting > .Donasi-button {
-    margin: 1.5rem auto 0; /* Center and space */
+    margin: 1.5rem auto 0;
   }
 
   main > section,
@@ -731,21 +915,19 @@ footer .footer-section .social-media li a:hover img {
   .section-2,
   .section-3,
   .section-4,
-  .section-5 {
+  .section-5,
+  .community-partners-section {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
-
   .section-1 .time-cards {
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
   }
   .section-1 .time-cards article {
-    width: calc(33.333% - 1rem); /* Three cards per row */
-    padding: 1.5rem 0.5rem; /* Adjust padding */
-    font-size: 0.9em;
+    padding: 1rem 0.5rem;
   }
 
   .section-2 {
@@ -755,9 +937,8 @@ footer .footer-section .social-media li a:hover img {
     font-size: 1.3rem;
   }
   .section-2 .infaq-cards article {
-    width: calc(50% - 0.5rem); /* Two cards per row */
+    width: calc(50% - 0.5rem);
   }
-
 
   .section-3 .jadwal-kegiatan-nav nav ul {
     gap: 0.5rem;
@@ -771,41 +952,85 @@ footer .footer-section .social-media li a:hover img {
   }
 
   .section-4 .judul,
-  .section-5 .judul {
+  .section-5 .judul,
+  .community-partners-section .judul {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
+  }
+  .community-partners-section .judul h2 {
+    text-align: center;
   }
 
   .section-4 .content,
   .section-5 .content {
-    grid-template-columns: 1fr; /* Stack cards */
+    grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  .section-4 article .title,
-  .section-5 article .title {
-    min-height: auto; /* Let title height be natural */
-  }
 
-  .section-4 article .btn,
-  .section-5 article .btn {
-    width: 100%;
-    text-align: center;
-    padding: 0.8rem 1rem;
+  /* Footer Responsive Mobile */
+  .footer-content-wrapper {
+    padding: 0 1.5rem; /* Kurangi padding di mobile */
   }
-
-  footer .container {
-    flex-direction: column;
+  .footer-main-content {
+    flex-direction: column; /* Susun logo, alamat, donasi secara vertikal */
+    align-items: center; /* Pusatkan item */
+    text-align: center; /* Teks juga terpusat */
+    padding-bottom: 2rem;
+  }
+  .footer-logo-section {
+    margin-bottom: 1.5rem; /* Jarak bawah untuk logo */
+  }
+  .footer-logo {
+    max-width: 120px;
+  }
+  .footer-info-columns {
+    flex-direction: column; /* Alamat dan donasi juga vertikal */
     align-items: center;
+    width: 100%; /* Ambil lebar penuh */
+  }
+  .footer-section {
+    min-width: 100%;
+    text-align: center; /* Pastikan teks di dalam section terpusat */
+  }
+  .footer-donation .donation-accounts-container {
+    justify-content: center; /* Pusatkan blok rekening jika wrap */
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column; /* Susun bawah footer secara vertikal */
+    align-items: center; /* Pusatkan */
     text-align: center;
     gap: 1.5rem;
   }
-  footer .footer-section {
-    min-width: 100%;
-    padding: 0;
+  .footer-bottom-left {
+    align-items: center; /* Pusatkan nav dan copyright */
+    order: 2; /* Tampilkan setelah social media jika diinginkan, atau biarkan default */
   }
-  footer .footer-section .social-media {
-    justify-content: center;
+  .footer-nav ul {
+    justify-content: center; /* Pusatkan link nav */
+    gap: 0.5rem 0.8rem;
+  }
+  .social-media {
+    order: 1; /* Tampilkan social media di atas nav & copyright */
+    margin-bottom: 1rem; /* Beri jarak jika social media di atas */
+  }
+
+  /* Community & Partners Responsive Small Mobile */
+  .partner-logos,
+  .partner-placeholders {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .community-partners-section .sub-judul-community {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 550px) {
+  /* Mobile Sangat Kecil */
+  .section-2 .infaq-cards article {
+    width: 100%;
   }
 }
 
@@ -825,22 +1050,44 @@ footer .footer-section .social-media li a:hover img {
   .section-2,
   .section-3,
   .section-4,
-  .section-5 {
+  .section-5,
+  .community-partners-section {
     padding-top: 2rem;
     padding-bottom: 2rem;
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  .footer-content-wrapper {
+    padding: 0 1rem;
+  }
+
+  .section-1 .time-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
 
   .section-1 .time-cards article {
-    width: calc(50% - 0.5rem); /* Two cards per row for very small screens */
     font-size: 0.85em;
-  }
-
-  .section-2 .infaq-cards article {
-    width: 100%; /* Stack infaq cards */
+    padding: 1rem 0.5rem;
   }
   .section-3 .ustad-cards {
-    grid-template-columns: 1fr; /* Stack ustad cards */
+    grid-template-columns: 1fr;
+  }
+
+  .partner-logos,
+  .partner-placeholders {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .partner-logo-item,
+  .partner-placeholder-item {
+    padding: 0.75rem;
+    min-height: 80px; /* Sesuaikan tinggi minimal di layar sangat kecil */
+  }
+  .partner-logo-item img {
+    max-height: 50px; /* Logo lebih kecil */
+  }
+  .partner-placeholder-item svg.gallery-icon {
+    max-width: 30px;
   }
 }
