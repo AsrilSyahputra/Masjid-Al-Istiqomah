@@ -316,7 +316,7 @@ main > section:last-of-type {
   background-color: var(--paleGreen);
   display: flex;
   flex-flow: column nowrap;
-  gap: 2rem;
+  gap: 1rem;
   padding-left: 3rem;
   padding-right: 3rem;
 }
@@ -330,7 +330,7 @@ main > section:last-of-type {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem 1rem;
+  gap: 1rem;
   list-style: none;
 }
 
@@ -340,15 +340,13 @@ main > section:last-of-type {
   font-size: 0.85rem;
   font-weight: 900;
   padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  transition: color 0.2s ease, background-color 0.2s ease,
-    border-color 0.2s ease;
+  margin: 1rem;
 }
 
-.section-3 .jadwal-kegiatan-nav nav ul li a:is(.active, :hover) {
+.section-3 .jadwal-kegiatan-nav nav ul li a:hover {
   color: var(--mediumGreen);
-  background-color: rgba(143, 195, 50, 0.1);
-  border-bottom: solid 1px var(--mediumGreen);
+  border-bottom: solid 2px;
+  padding-bottom: 5px;
 }
 
 .section-3 .ustad-cards {
@@ -358,7 +356,7 @@ main > section:last-of-type {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 1.5rem;
-  place-items: stretch;
+  place-items: center;
 }
 
 .section-3 > .ustad-cards > article {
@@ -369,9 +367,12 @@ main > section:last-of-type {
   flex-direction: column;
   justify-content: space-between;
   row-gap: 0.5rem;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 1.5rem 1.25rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 8px 32px 0px rgba(143, 195, 50, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+  background-color: white;
 }
 
 .section-3 > .ustad-cards > article > .ustadz-name {
@@ -564,12 +565,6 @@ main > section:last-of-type {
   max-width: 100%;
   max-height: 70px;
   object-fit: contain;
-}
-
-.partner-logo-item.highlighted {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .partner-placeholder-item {
